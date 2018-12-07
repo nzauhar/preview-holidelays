@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="misfortune">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wheel of Misfortune</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"> 
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">  
+    <link href="https://fonts.googleapis.com/css?family=Elsie:400,900%7cRoboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <a class="skip-link" href="#content">Skip to content</a>  
+<header>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+     <nav class="nav-style">
+            <i class="fas fa-tree"></i>
+            <a href="index.html" data-hover="Home">Home</a>
+            <a href="flight-or-no-flight.html" data-hover="Flight or No Flight">Flight or No Flight</a>
+            <a href="wheel-of-misfortune.html" class = "current" data-hover="Wheel of Misfortune">Wheel of Misfortune</a>                
+            <a href="about.html" data-hover="About">About</a>                
+     </nav>
+    <h1>Wheel of Misfortune</h1>
+</header>
+<div id="content"></div>
+<main>
+     <p>Where jetlag is the best-case scenario. </p>
+<br>
+<div class="grid-container2">
+     <!-- <div id="wheelie"><img class="candy-wheel" src="images/candy-wheel.png" alt = "a wheel you can spin to find out your airline misfortune"/></div> -->
+    <div id="spinner">
+        <h2>What will your flight fortune hold?</h2>
+        <p>Cross your fingers and take a spin!</p>
+    <!-- <button class="btn btn-2 btn-2h">TAKE A SPIN</button></div> -->
+
+
+    <div id="wrapper2"></div>
+            
+            <div id="wheel">
+                <div id="inner-wheel">
+                    <div class="sec"><span class="fa fa-bell-o"></span></div>
+                    <div class="sec"><span class="fa fa-comment-o"></span></div>
+                    <div class="sec"><span class="fa fa-smile-o"></span></div>
+                    <div class="sec"><span class="fa fa-heart-o"></span></div>
+                    <div class="sec"><span class="fa fa-star-o"></span></div>
+                    <div class="sec"><span class="fa fa-lightbulb-o"></span></div>
+                </div>       
+               
+                <div id="spin">
+                    <div id="inner-spin"></div>
+                </div>
+
+                 <div id="shine"></div>
+            </div>
+
+            <div id="txt"></div>
+      </div>   
+    </div>
+</main>
+</div>
+</div>
+</body>
+<footer>
+        <p>Snow accumulation ~5 inches</p>	
+</footer>
+<script type="text/javascript">
+//set default degree (360*5)
+var degree = 1800;
+//number of clicks = 0
+var clicks = 0;
+
+$(document).ready(function(){
+	
+	/*WHEEL SPIN FUNCTION*/
+	$('#spin').click(function(){
+		
+		//add 1 every click
+		clicks ++;
+		
+		/*multiply the degree by number of clicks
+	  generate random number between 1 - 360, 
+    then add to the new degree*/
+		var newDegree = degree*clicks;
+		var extraDegree = Math.floor(Math.random() * (360 - 1 + 1)) + 1;
+		totalDegree = newDegree+extraDegree;
+		
+		/*let's make the spin btn to tilt every
+		time the edge of the section hits 
+		the indicator*/
+		$('#wheel .sec').each(function(){
+			var t = $(this);
+			var noY = 0;
+			
+			var c = 0;
+			var n = 700;	
+			var interval = setInterval(function () {
+				c++;				
+				if (c === n) { 
+					clearInterval(interval);				
+				}	
+					
+				var aoY = t.offset().top;
+				$("#txt").html(aoY);
+				console.log(aoY);
+				
+				/*23.7 is the minumum offset number that 
+				each section can get, in a 30 angle degree.
+				So, if the offset reaches 23.7, then we know
+				that it has a 30 degree angle and therefore, 
+				exactly aligned with the spin btn*/
+				if(aoY < 23.89){
+					console.log('<<<<<<<<');
+					$('#spin').addClass('spin');
+					setTimeout(function () { 
+						$('#spin').removeClass('spin');
+					}, 100);	
+				}
+			}, 10);
+			
+			$('#inner-wheel').css({
+				'transform' : 'rotate(' + totalDegree + 'deg)'			
+			});
+		 
+			noY = t.offset().top;
+			
+		});
+	});
+	
+	
+	
+});//DOCUMENT READY
+	
+	
+
+</script>
+
+</html>
