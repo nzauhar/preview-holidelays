@@ -9,18 +9,17 @@
     -o-background-size: cover;
     background-size: cover;
 } */
-/* @media (orientation: landscape){
-    .home{
-    background: url(../images/land-xmas-tree.jpg) no-repeat center center fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    }
- } */
-
+@media (orientation: landscape){
+    body.home{
+        height: vh;
+        width: vw;
+        background: url(../images/xmas-home-1.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    } 
+}
 /***** RESPONSIVE FLIGHT OR NO FLIGHT PAGE *****/
 
 /* --Mobile-- Defaults & Layout for screen size widths than than 639px */
